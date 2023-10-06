@@ -5,11 +5,33 @@ library(DT)
 library(tibble)
 
 
-df_single_year = readRDS("df_single_year.rds")
-key_single_year = readRDS("key_single_year.rds")
+if(0) {
+	library(readxl)
+	file_single = "~/Downloads/Table_1_Authors_singleyr_2022_pubs_since_1788_wopp_extracted_202310.xlsx"
+	file_career = "~/Downloads/Table_1_Authors_career_2022_pubs_since_1788_wopp_extracted_202310.xlsx"
 
-df_career = readRDS("df_career.rds")
-key_career = readRDS("key_career.rds")
+	tb = read_xlsx(file_single, sheet = 2)
+	key = read_xlsx(file_single, sheet = 1)
+	key = structure(key$DESCRIPTION, names = key$FIELD)
+
+	saveRDS(tb, file = "df_single_year_2022.rds", compress = "xz")
+	saveRDS(key, file = "key_single_year_2022.rds", compress = "xz")
+
+	tb = read_xlsx(file_career, sheet = 2)
+	key = read_xlsx(file_career, sheet = 1)
+	key = structure(key$DESCRIPTION, names = key$FIELD)
+
+	saveRDS(tb, file = "df_career_2022.rds", compress = "xz")
+	saveRDS(key, file = "key_career_2022.rds", compress = "xz")
+}
+
+year = 2022
+
+df_single_year = readRDS(paste0("df_single_year_", year, ".rds"))
+key_single_year = readRDS(paste0("key_single_year_", year, ".rds"))
+
+df_career = readRDS(paste0("df_career_", year, ".rds"))
+key_career = readRDS(paste0("key_career_", year, ".rds"))
 
 cols = c("rank (ns)", "authfull", "inst_name", "cntry", "sm-subfield-1", "sm-subfield-2")
 
@@ -22,9 +44,12 @@ env = new.env()
 env$df = df_single_year
 env$key = key_single_year
 
+choices = c(foo = "single_year", "Whole career" = "career")
+names(choices)[1] = paste0("Single year ", year)
+
 ui = fluidPage(
 	h1("World top 2% scientists"),
-	radioButtons("category", label = "Category", choices = c("Single year 2021" = "single_year", "Whole career" = "career"), inline = TRUE),
+	radioButtons("category", label = "Category", choices = choices, inline = TRUE),
 	p("Search text allows regular expression."),
 	dataTableOutput("tb"),
 	hr(),
