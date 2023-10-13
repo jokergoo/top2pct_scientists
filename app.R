@@ -53,7 +53,7 @@ ui = fluidPage(
 	p("Search text allows regular expression."),
 	dataTableOutput("tb"),
 	hr(),
-	HTML("<p>Data source: <a href='https://elsevier.digitalcommonsdata.com/datasets/btchxktzyw/4'>https://elsevier.digitalcommonsdata.com/datasets/btchxktzyw/4</a></p>"),
+	HTML("<p>Data source: <a href='https://elsevier.digitalcommonsdata.com/datasets/btchxktzyw/6'>https://elsevier.digitalcommonsdata.com/datasets/btchxktzyw/6</a></p>"),
 	HTML("<p>Source code for this shiny app: <a href='https://github.com/jokergoo/top2pct_scientists'>https://github.com/jokergoo/top2pct_scientists</a></p>"),
 	tags$br(),
 	tags$br()
