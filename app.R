@@ -50,10 +50,10 @@ names(choices)[1] = paste0("Single year ", year)
 ui = fluidPage(
 	h1("World top 2% scientists"),
 	radioButtons("category", label = "Category", choices = choices, inline = TRUE),
-	p("Search text allows regular expression."),
+	p("Search text allows regular expression. The 'Rank' column is based on the 'rank (ns)' column in the original Excel table."),
 	dataTableOutput("tb"),
 	hr(),
-	HTML("<p>Data source: <a href='https://elsevier.digitalcommonsdata.com/datasets/btchxktzyw/4'>https://elsevier.digitalcommonsdata.com/datasets/btchxktzyw/4</a></p>"),
+	HTML("<p>Data source: <a href='https://elsevier.digitalcommonsdata.com/datasets/btchxktzyw/6'>https://elsevier.digitalcommonsdata.com/datasets/btchxktzyw/6</a></p>"),
 	HTML("<p>Source code for this shiny app: <a href='https://github.com/jokergoo/top2pct_scientists'>https://github.com/jokergoo/top2pct_scientists</a></p>"),
 	tags$br(),
 	tags$br()
